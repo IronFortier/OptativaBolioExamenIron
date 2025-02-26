@@ -1,0 +1,19 @@
+networks:
+  my-network2:
+
+services:
+  examen:
+    container_name: examen
+    build: .
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./examen:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+      
+    command: >
+      sh -c "npm install && npm run dev"
+    networks:
+      - my-network2
